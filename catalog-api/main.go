@@ -37,5 +37,5 @@ func main() {
 	router.GET("/albums", getAlbums)
 	router.GET("/version", getVersion)
 	
-	router.Run("localhost:8080")
+	router.Run("localhost:9080")
 }
