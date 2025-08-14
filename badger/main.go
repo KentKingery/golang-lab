@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log/slog"
 	"net/http"
 
@@ -17,6 +18,9 @@ var albums = []album{
 func main() {
 	slog.Info("Startup")
 
+	opts := badger.DefaultOptions("")
+	opts.Logger = nil
+
 	db, err := badger.Open(badger.DefaultOptions("./data"))
 	if err != nil {
 		slog.Error(err.Error())
@@ -24,7 +28,13 @@ func main() {
 
 	defer db.Close()
 
+	gin.DefaultWriter = io.Discard
 	router := gin.Default()
+
+	router.GET("/favicon.ico", func(c *gin.Context) {
+		c.Status(http.StatusOK) // Return 200 OK
+	})
+
 	router.GET("/albums", getAlbums)
 	router.POST("/albums", postAlbums)
 
@@ -35,7 +45,7 @@ func main() {
 
 // getAlbums responds with the list of all albums as JSON.
 func getAlbums(c *gin.Context) {
-	slog.Info("getAlbums calleds")
+	slog.Info("getAlbums called")
 	c.IndentedJSON(http.StatusOK, albums)
 }
 
