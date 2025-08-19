@@ -1,0 +1,12 @@
+---
+version: "1.0"
+routes:
+  - routeA:
+    path: "/service1"
+    url: "http://localhost:8081"
+  - routeB:
+    path: "/service2"
+    url: "http://localhost:8082"
+  - routeC:
+    path: "/service3"
+    url: "http://localhost:8083"
