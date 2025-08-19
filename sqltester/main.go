@@ -1,11 +1,7 @@
 package main
 
-import (
-
-)
-
 func main() {
 	logger.Debug("Startup")
-	getSources()
+	GetPartitions()
 	logger.Debug("Shutdown")
 }
