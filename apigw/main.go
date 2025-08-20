@@ -39,30 +39,7 @@ func main() {
 	}
 
 	slog.Info("API gateway stopped")
-	/*
-		// Define backend service URLs
-		serviceAURL, _ := url.Parse("http://localhost:8081")
-		serviceBURL, _ := url.Parse("http://localhost:8082")
 
-		// Create reverse proxies for each service
-		proxyA := httputil.NewSingleHostReverseProxy(serviceAURL)
-		proxyB := httputil.NewSingleHostReverseProxy(serviceBURL)
-
-		// Define routing logic
-		http.HandleFunc("/serviceA/", func(w http.ResponseWriter, r *http.Request) {
-			r.URL.Path = r.URL.Path[len("/serviceA"):] // Trim prefix for backend
-			proxyA.ServeHTTP(w, r)
-		})
-
-		http.HandleFunc("/serviceB/", func(w http.ResponseWriter, r *http.Request) {
-			r.URL.Path = r.URL.Path[len("/serviceB"):] // Trim prefix for backend
-			proxyB.ServeHTTP(w, r)
-		})
-
-		// Start the API Gateway server
-		log.Println("API Gateway listening on :8080")
-		log.Fatal(http.ListenAndServe(":8080", nil))
-	*/
 }
 
 func parseConfig(filePath string) GwConfig {
